@@ -1,12 +1,19 @@
-import { useState } from "react";
-import "./App.css";
+// App.jsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import MovieDetails from "./pages/MovieDetails";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <h1>YAMDS: Yet Another Movie Database Searcher</h1>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+        <Route path="/movie/:id" element={<MovieDetails />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
