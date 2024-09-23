@@ -11,9 +11,7 @@ const apiClient = axios.create({
 // Fetch movies based on search query
 export const searchMovies = async (query) => {
     const response = await apiClient.get('/search/movie', {
-        params: {
-            query,
-        },
+        params: { query },
     });
     return response.data.results;
 };
@@ -22,4 +20,10 @@ export const searchMovies = async (query) => {
 export const getMovieDetails = async (id) => {
     const response = await apiClient.get(`/movie/${id}`);
     return response.data;
+};
+
+// Fetch trending movies
+export const getTrendingMovies = async () => {
+    const response = await apiClient.get('/trending/movie/week');
+    return response.data.results;
 };
