@@ -6,6 +6,7 @@ import {
 } from "../services/api";
 import SearchBar from "../components/SearchBar";
 import MovieList from "../components/MovieList";
+import { Link } from "react-router-dom";
 
 const developerPicks = [603, 157336, 128, 155];
 
@@ -52,7 +53,16 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container mx-auto px-4">
+      <nav className="flex justify-between items-center mb-8">
+        <h1 className="text-2xl font-bold">YAMDS</h1>
+        <Link
+          to="/favorites"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          My Favorites
+        </Link>
+      </nav>
       <SearchBar onSearch={handleSearch} />
 
       <h2>Search Results</h2>
