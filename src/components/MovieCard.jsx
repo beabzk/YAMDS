@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import useFavoritesStore from "../stores/favoritesStore";
+import useStore from "../stores/store";
 import { Heart } from "lucide-react";
 
 const MovieCard = ({ movie }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const { addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
+  const { addFavorite, removeFavorite, isFavorite } = useStore();
   const favorite = isFavorite(movie.id);
 
   const handleFavoriteToggle = (e) => {

@@ -1,9 +1,9 @@
 import React from "react";
-import useFavoritesStore from "../stores/favoritesStore";
+import useStore from "../stores/store";
 import MovieCard from "./MovieCard";
 
 const FavoritesList = () => {
-  const { favorites } = useFavoritesStore();
+  const { favorites } = useStore();
 
   return (
     <div className="container mx-auto px-4">
