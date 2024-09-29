@@ -8,6 +8,8 @@ const useStore = create(
             currentPage: 1,
             totalPages: 1,
             movies: [],
+            searchQuery: '',
+            searchResults: [],
             addFavorite: (movie) => set((state) => ({
                 favorites: [...state.favorites, movie]
             })),
@@ -18,9 +20,9 @@ const useStore = create(
             setCurrentPage: (page) => set({ currentPage: page }),
             setTotalPages: (pages) => set({ totalPages: pages }),
             setMovies: (movies) => set({ movies }),
-            addMovies: (newMovies) => set((state) => ({
-                movies: [...state.movies, ...newMovies]
-            })),
+            setSearchQuery: (query) => set({ searchQuery: query }),
+            setSearchResults: (results) => set({ searchResults: results }),
+            clearSearch: () => set({ searchQuery: '', searchResults: [] }),
         }),
         {
             name: 'movie-app-storage',
