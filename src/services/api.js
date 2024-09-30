@@ -29,3 +29,15 @@ export const getTrendingMovies = async (page = 1) => {
     });
     return response.data;
 };
+
+// Fetch movie credits (cast and crew)
+export const getMovieCredits = async (id) => {
+    const response = await apiClient.get(`/movie/${id}/credits`);
+    return response.data;
+};
+
+// Fetch movie videos (trailers, teasers, etc.)
+export const getMovieVideos = async (id) => {
+    const response = await apiClient.get(`/movie/${id}/videos`);
+    return response.data;
+};
