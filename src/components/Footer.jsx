@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-4 px-6 mt-auto">
+    <footer className="bg-accent text-background py-4 px-6 mt-auto">
       <div className="container mx-auto text-center">
         <p className="text-lg font-semibold mb-2">
           YAMDS: Yet Another Movie Database Searcher

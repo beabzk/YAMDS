@@ -19,7 +19,7 @@ const MovieCard = ({ movie }) => {
 
   return (
     <div
-      className="movie-card relative bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105"
+      className="movie-card relative bg-background rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

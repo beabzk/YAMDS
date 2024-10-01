@@ -15,9 +15,12 @@ const SearchBar = ({ onSearch, initialQuery = "" }) => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search for movies..."
-        className="border p-2 rounded"
+        className="border p-2 rounded text-text bg-background"
       />
-      <button type="submit" className="ml-2 p-2 bg-blue-500 text-white rounded">
+      <button
+        type="submit"
+        className="ml-2 p-2 bg-primary text-background rounded hover:bg-accent"
+      >
         Search
       </button>
     </form>

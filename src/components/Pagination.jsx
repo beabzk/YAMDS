@@ -38,8 +38,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             to={`/page/${number}`}
             className={`px-3 py-2 rounded ${
               number === currentPage
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 hover:bg-gray-300"
+                ? "bg-primary text-background"
+                : "bg-secondary text-background hover:bg-accent"
             }`}
             onClick={(e) => {
               e.preventDefault();
@@ -76,12 +76,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           max={totalPages}
           value={inputPage}
           onChange={handleInputChange}
-          className="w-16 px-2 py-1 border rounded"
+          className="w-16 px-2 py-1 border rounded text-text bg-background"
           placeholder="Page"
         />
         <button
           type="submit"
-          className="ml-2 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="ml-2 px-3 py-1 bg-primary text-background rounded hover:bg-accent"
         >
           Go
         </button>

@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-blue-600 text-white py-4 px-6 flex justify-between items-center">
+    <header className="bg-accent text-background py-4 px-6 flex justify-between items-center">
       <Link to="/" className="text-2xl font-bold">
         YAMDS
       </Link>
@@ -33,7 +33,7 @@ const Header = () => {
               placeholder="Search movies..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className={`bg-blue-500 text-white placeholder-blue-200 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white ${
+              className={`bg-secondary text-background placeholder-background/70 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary ${
                 isSearchExpanded ? "w-full" : "w-0 md:w-auto"
               } transition-all duration-300`}
             />
@@ -46,7 +46,10 @@ const Header = () => {
             </button>
           </form>
         </div>
-        <Link to="/favorites" className="text-white hover:text-blue-200">
+        <Link
+          to="/favorites"
+          className="text-background hover:text-background/70"
+        >
           <Heart size={24} />
         </Link>
       </div>

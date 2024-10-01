@@ -5,8 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'text': '#040316',
+        'background': '#fbfbfe',
+        'primary': '#78dc50',
+        'secondary': '#948fff',
+        'accent': '#1a0057',
+      },
+    },
   },
+
   plugins: [
     require('@tailwindcss/aspect-ratio'),
   ],
