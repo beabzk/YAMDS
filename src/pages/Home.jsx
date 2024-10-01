@@ -59,7 +59,7 @@ const Home = () => {
 
   return (
     <div className="container mx-auto px-4">
-      <nav className="flex justify-between items-center mb-8">
+      {/* <nav className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-bold">YAMDS</h1>
         <Link
           to="/favorites"
@@ -67,8 +67,8 @@ const Home = () => {
         >
           My Favorites
         </Link>
-      </nav>
-      <SearchBar onSearch={handleSearch} />
+      </nav> */}
+      {/* <SearchBar onSearch={handleSearch} /> */}
 
       {error && <div className="text-red-500 mb-4">{error}</div>}
 
