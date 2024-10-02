@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getMovieDetails, getTrendingMovies } from "../services/api";
-import SearchBar from "../components/SearchBar";
 import MovieList from "../components/MovieList";
 import useStore from "../stores/store";
 
@@ -59,17 +58,6 @@ const Home = () => {
 
   return (
     <div className="container mx-auto px-4">
-      {/* <nav className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold">YAMDS</h1>
-        <Link
-          to="/favorites"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          My Favorites
-        </Link>
-      </nav> */}
-      {/* <SearchBar onSearch={handleSearch} /> */}
-
       {error && <div className="text-red-500 mb-4">{error}</div>}
 
       <h2 className="text-xl font-bold mb-4">Trending Movies</h2>

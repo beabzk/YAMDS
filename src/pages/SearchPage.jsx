@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { searchMovies } from "../services/api";
-import SearchBar from "../components/SearchBar";
 import MovieList from "../components/MovieList";
 import Pagination from "../components/Pagination";
 import useStore from "../stores/store";
@@ -61,10 +60,6 @@ const SearchPage = () => {
   return (
     <div className="container mx-auto px-4">
       <h1 className="text-2xl font-bold mb-4">Search Results</h1>
-      <SearchBar
-        onSearch={(newQuery) => handleSearch(newQuery, 1)}
-        initialQuery={searchQuery}
-      />
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {isLoading ? (
         <div>Loading...</div>
