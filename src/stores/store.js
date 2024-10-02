@@ -1,20 +1,23 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+// Create a Zustand store with persistence
 const useStore = create(
     persist(
         (set, get) => ({
+            // State variables
             favorites: [],
             currentPage: 1,
             totalPages: 1,
             movies: [],
             searchQuery: '',
             searchResults: [],
+            // Actions
             addFavorite: (movie) => set((state) => ({
-                favorites: [...state.favorites, movie]
+                favorites: [...state.favorites, movie] // Add a movie to favorites
             })),
             removeFavorite: (movieId) => set((state) => ({
-                favorites: state.favorites.filter((movie) => movie.id !== movieId)
+                favorites: state.favorites.filter((movie) => movie.id !== movieId) // Remove a movie from favorites by ID
             })),
             isFavorite: (movieId) => get().favorites.some((movie) => movie.id === movieId),
             setCurrentPage: (page) => set({ currentPage: page }),
@@ -25,8 +28,8 @@ const useStore = create(
             clearSearch: () => set({ searchQuery: '', searchResults: [] }),
         }),
         {
-            name: 'movie-app-storage',
-            getStorage: () => localStorage,
+            name: 'movie-app-storage', // Name of the storage key
+            getStorage: () => localStorage, // Use localStorage for persistence
         }
     )
 )

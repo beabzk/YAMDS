@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getMovieDetails, getTrendingMovies } from "../services/api";
 import MovieList from "../components/MovieList";
-import useStore from "../stores/store";
 
+// IDs for developer's picks movies
 const developerPicks = [603, 157336, 128, 155];
 const TRENDING_PREVIEW_COUNT = 8;
 
 const Home = () => {
-  const navigate = useNavigate();
-  const { setSearchQuery, clearSearch } = useStore();
+  // const navigate = useNavigate();
+  // const { setSearchQuery, clearSearch } = useStore();
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [devPicks, setDevPicks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,9 +18,10 @@ const Home = () => {
   useEffect(() => {
     fetchDeveloperPicks();
     fetchTrendingMoviesPreview();
-    clearSearch(); // Clear previous search when returning to home
+    // clearSearch(); // Clear previous search when returning to home
   }, []);
 
+  // Fetch developer's picks movies details
   const fetchDeveloperPicks = async () => {
     setIsLoading(true);
     setError(null);
@@ -37,6 +38,7 @@ const Home = () => {
     }
   };
 
+  // Fetch trending movies preview
   const fetchTrendingMoviesPreview = async () => {
     setIsLoading(true);
     setError(null);
@@ -49,11 +51,6 @@ const Home = () => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-    navigate(`/search?query=${encodeURIComponent(query)}`);
   };
 
   return (

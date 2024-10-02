@@ -11,24 +11,29 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
     let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
+    // Adjust startPage if the number of visible pages is less than maxVisiblePages
     if (endPage - startPage + 1 < maxVisiblePages) {
       startPage = Math.max(1, endPage - maxVisiblePages + 1);
     }
 
+    // Add first page and ellipsis if necessary
     if (startPage > 1) {
       pageNumbers.push(1);
       if (startPage > 2) pageNumbers.push("...");
     }
 
+    // Add visible page numbers
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(i);
     }
 
+    // Add last page and ellipsis if necessary
     if (endPage < totalPages) {
       if (endPage < totalPages - 1) pageNumbers.push("...");
       pageNumbers.push(totalPages);
     }
 
+    // Map page numbers to list items
     return pageNumbers.map((number, index) => (
       <li key={index} className="inline-block mx-1">
         {number === "..." ? (
@@ -53,10 +58,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     ));
   };
 
+  // Handle input change for the page number input
   const handleInputChange = (e) => {
     setInputPage(e.target.value);
   };
 
+  // Handle form submission for page number input
   const handleSubmit = (e) => {
     e.preventDefault();
     const pageNumber = parseInt(inputPage, 10);

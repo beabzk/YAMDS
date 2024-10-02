@@ -21,10 +21,12 @@ const SearchPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Extract query parameters from the URL
   const queryParams = new URLSearchParams(location.search);
   const urlQuery = queryParams.get("query") || "";
   const urlPage = parseInt(queryParams.get("page"), 10) || 1;
 
+  // Effect to handle search when URL parameters change
   useEffect(() => {
     if (
       urlQuery !== searchQuery ||
@@ -35,6 +37,7 @@ const SearchPage = () => {
     }
   }, [urlQuery, urlPage]);
 
+  // Function to handle movie search
   const handleSearch = async (query, page = 1) => {
     setIsLoading(true);
     setError(null);
@@ -44,6 +47,7 @@ const SearchPage = () => {
       setTotalPages(result.total_pages || 1);
       setCurrentPage(page);
       setSearchQuery(query);
+      // Update the URL with the new query and page
       navigate(`/search?query=${encodeURIComponent(query)}&page=${page}`);
     } catch (error) {
       console.error("Error fetching movies: ", error);
@@ -53,6 +57,7 @@ const SearchPage = () => {
     }
   };
 
+  // Function to handle page change
   const handlePageChange = (newPage) => {
     handleSearch(searchQuery, newPage);
   };

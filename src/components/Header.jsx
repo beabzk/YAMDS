@@ -3,13 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { Search, Heart, X } from "lucide-react";
 
 const Header = () => {
+  // State to manage the search bar expansion
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  // State to manage the search query input
   const [searchQuery, setSearchQuery] = useState("");
+  // State to manage screen size check for responsive design
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 640);
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const searchContainerRef = useRef(null);
 
+  // Effect to handle window resize and update screen size state
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 640);
@@ -19,12 +23,14 @@ const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Effect to focus the search input when search bar is expanded
   useEffect(() => {
     if (isSearchExpanded && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isSearchExpanded]);
 
+  // Effect to handle clicks outside the search bar to collapse it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -41,6 +47,7 @@ const Header = () => {
     };
   }, []);
 
+  // Function to handle search form submission
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
@@ -50,6 +57,7 @@ const Header = () => {
     }
   };
 
+  // Function to toggle the search bar expansion
   const toggleSearch = () => {
     if (isSmallScreen) {
       if (isSearchExpanded && searchQuery.trim()) {
@@ -62,6 +70,7 @@ const Header = () => {
     }
   };
 
+  // Function to clear the search input
   const clearSearch = () => {
     setSearchQuery("");
     if (inputRef.current) {

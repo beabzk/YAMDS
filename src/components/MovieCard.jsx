@@ -8,12 +8,13 @@ const MovieCard = ({ movie }) => {
   const { addFavorite, removeFavorite, isFavorite } = useStore();
   const favorite = isFavorite(movie.id);
 
+  // Handle the favorite toggle button click
   const handleFavoriteToggle = (e) => {
     e.preventDefault(); // Prevent navigating to movie details
     if (favorite) {
-      removeFavorite(movie.id);
+      removeFavorite(movie.id); // Remove from favorites if already a favorite
     } else {
-      addFavorite(movie);
+      addFavorite(movie); // Add to favorites if not already a favorite
     }
   };
 
@@ -49,10 +50,10 @@ const MovieCard = ({ movie }) => {
         </div>
       </Link>
       <button
-        onClick={handleFavoriteToggle}
+        onClick={handleFavoriteToggle} // Handle favorite toggle on button click
         className={`absolute top-2 right-2 p-2 rounded-full transition-opacity duration-300 ${
-          isHovered ? "opacity-100" : "opacity-0"
-        } ${favorite ? "bg-red-500" : "bg-white"}`}
+          isHovered ? "opacity-100" : "opacity-0" // Show button only when hovered
+        } ${favorite ? "bg-red-500" : "bg-white"}`} // Change button color based on favorite status
       >
         <Heart
           size={20}

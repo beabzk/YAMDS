@@ -5,6 +5,7 @@ import MovieList from "../components/MovieList";
 import Pagination from "../components/Pagination";
 
 const TrendingPage = () => {
+  // Extract the page number from the URL parameters
   const { page: urlPage } = useParams();
   const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
@@ -13,12 +14,14 @@ const TrendingPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Effect to fetch trending movies whenever the URL page parameter changes
   useEffect(() => {
     const pageNumber = parseInt(urlPage, 10) || 1;
     setCurrentPage(pageNumber);
     fetchTrendingMovies(pageNumber);
   }, [urlPage]);
 
+  // Function to fetch trending movies from the API
   const fetchTrendingMovies = async (page = 1) => {
     setIsLoading(true);
     setError(null);
@@ -34,6 +37,7 @@ const TrendingPage = () => {
     }
   };
 
+  // Function to handle page changes and navigate to the new page
   const handlePageChange = (newPage) => {
     navigate(`/trending/${newPage}`);
   };

@@ -15,7 +15,7 @@ const MovieDetails = () => {
   const [credits, setCredits] = useState(null);
   const [videos, setVideos] = useState([]);
   const { searchQuery, currentPage, addFavorite, removeFavorite, isFavorite } =
-    useStore();
+    useStore(); // Custom hook to access global store
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -24,6 +24,7 @@ const MovieDetails = () => {
       setIsLoading(true);
       setError(null);
       try {
+        // Fetch movie details, credits, and videos concurrently
         const [movieData, creditsData, videosData] = await Promise.all([
           getMovieDetails(id),
           getMovieCredits(id),
@@ -44,6 +45,7 @@ const MovieDetails = () => {
   }, [id]);
 
   const handleGoBack = () => {
+    // Navigate back to the search results or home page
     if (searchQuery) {
       navigate(
         `/search?query=${encodeURIComponent(searchQuery)}&page=${currentPage}`
@@ -156,6 +158,7 @@ const MovieDetails = () => {
       </div>
 
       {trailer && (
+        // Display the trailer if available
         <div className="mt-8">
           <h2 className="text-2xl font-semibold mb-4">Trailer</h2>
           <div
