@@ -57,15 +57,34 @@ const Home = () => {
     <div className="container mx-auto px-4">
       {error && <div className="text-red-500 mb-4">{error}</div>}
 
-      <h2 className="text-xl font-bold mb-4">Trending Movies</h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-bold">Trending Movies</h2>
+        <Link
+          to="/trending"
+          className="text-blue-500 hover:text-blue-700 flex items-center"
+        >
+          See all trending
+          <svg
+            className="ml-1 w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
+        </Link>
+      </div>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <>
           <MovieList movies={trendingMovies} />
-          <Link to="/trending" className="text-blue-500 hover:text-blue-700">
-            See all trending movies
-          </Link>
         </>
       )}
 
