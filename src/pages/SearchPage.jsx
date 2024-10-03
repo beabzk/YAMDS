@@ -4,6 +4,7 @@ import { searchMovies } from "../services/api";
 import MovieList from "../components/MovieList";
 import Pagination from "../components/Pagination";
 import useStore from "../stores/store";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const SearchPage = () => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const SearchPage = () => {
       <h1 className="text-2xl font-bold mb-4">Search Results</h1>
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {isLoading ? (
-        <div>Loading...</div>
+        <LoadingSpinner size={48} className="mt-8" />
       ) : (
         <>
           <MovieList movies={searchResults} />

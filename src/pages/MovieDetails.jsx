@@ -7,6 +7,7 @@ import {
 } from "../services/api";
 import useStore from "../stores/store";
 import { Heart, Star, Calendar, Clock, Film } from "lucide-react";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -63,8 +64,7 @@ const MovieDetails = () => {
     }
   };
 
-  if (isLoading)
-    return <div className="container mx-auto px-4 py-8">Loading...</div>;
+  if (isLoading) return <LoadingSpinner size={48} className="mt-8" />;
   if (error)
     return (
       <div className="container mx-auto px-4 py-8 text-red-500">{error}</div>

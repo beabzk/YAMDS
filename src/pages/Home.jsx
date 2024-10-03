@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getMovieDetails, getTrendingMovies } from "../services/api";
 import MovieList from "../components/MovieList";
 import useStore from "../stores/store";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 // IDs for developer's picks movies
 const developerPicks = [603, 157336, 128, 155];
@@ -12,7 +13,7 @@ const Home = () => {
   const { clearSearch } = useStore();
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [devPicks, setDevPicks] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -23,8 +24,6 @@ const Home = () => {
 
   // Fetch developer's picks movies details
   const fetchDeveloperPicks = async () => {
-    setIsLoading(true);
-    setError(null);
     try {
       const picks = await Promise.all(
         developerPicks.map((id) => getMovieDetails(id))
@@ -33,15 +32,11 @@ const Home = () => {
     } catch (error) {
       console.error("Error fetching Developer's Picks: ", error);
       setError("Failed to fetch developer picks. Please try again.");
-    } finally {
-      setIsLoading(false);
     }
   };
 
   // Fetch trending movies preview
   const fetchTrendingMoviesPreview = async () => {
-    setIsLoading(true);
-    setError(null);
     try {
       const result = await getTrendingMovies(1);
       setTrendingMovies(result.results.slice(0, TRENDING_PREVIEW_COUNT));
@@ -53,10 +48,16 @@ const Home = () => {
     }
   };
 
+  if (isLoading) {
+    return <LoadingSpinner size={48} className="mt-8" />;
+  }
+
+  if (error) {
+    return <div className="text-red-500 mt-8 text-center">{error}</div>;
+  }
+
   return (
     <div className="container mx-auto px-4">
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Trending Movies</h2>
         <Link
@@ -80,16 +81,10 @@ const Home = () => {
           </svg>
         </Link>
       </div>
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <>
-          <MovieList movies={trendingMovies} />
-        </>
-      )}
+      <MovieList movies={trendingMovies} />
 
       <h2 className="text-xl font-bold mt-8 mb-4">Developer's Pick</h2>
-      {isLoading ? <div>Loading...</div> : <MovieList movies={devPicks} />}
+      <MovieList movies={devPicks} />
     </div>
   );
 };

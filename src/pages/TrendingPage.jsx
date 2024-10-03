@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getTrendingMovies } from "../services/api";
 import MovieList from "../components/MovieList";
 import Pagination from "../components/Pagination";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const TrendingPage = () => {
   // Extract the page number from the URL parameters
@@ -47,7 +48,7 @@ const TrendingPage = () => {
       <h1 className="text-2xl font-bold mb-4">Trending Movies</h1>
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {isLoading ? (
-        <div>Loading...</div>
+        <LoadingSpinner size={48} className="mt-8" />
       ) : (
         <>
           <MovieList movies={movies} />
