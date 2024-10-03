@@ -8,7 +8,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const renderPageNumbers = () => {
     const pageNumbers = [];
     const maxVisiblePages = 5;
+    // Calculate the start and end pages for pagination
+    // startPage is set to the maximum of 1 or (currentPage - half of maxVisiblePages)
     let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    // endPage is set to the minimum of totalPages or (startPage + maxVisiblePages - 1)
     let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
     // Adjust startPage if the number of visible pages is less than maxVisiblePages
@@ -74,9 +77,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   return (
-    <div className="flex items-center justify-center mt-8">
-      <ul className="flex">{renderPageNumbers()}</ul>
-      <form onSubmit={handleSubmit} className="ml-4">
+    <div className="block mt-8">
+      <ul className="flex justify-center">{renderPageNumbers()}</ul>
+      <form onSubmit={handleSubmit} className="ml-4 mt-4 justify-center flex">
         <input
           type="number"
           min="1"
