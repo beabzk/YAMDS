@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Search, Heart, X } from "lucide-react";
+import DarkModeToggle from "./DarkModeToggle";
 
 const Header = () => {
   // State to manage the search bar expansion
@@ -79,7 +80,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-accent text-background py-4 px-6 flex justify-between items-center">
+    <header className="bg-accent dark:bg-gray-800 text-background dark:text-white py-4 px-6 flex justify-between items-center">
       <Link
         to="/"
         className={`text-2xl font-bold ${
@@ -129,7 +130,11 @@ const Header = () => {
             </button>
           </form>
         </div>
-        <Link to="/favorites" className="text-background hover:text-primary">
+        <DarkModeToggle />
+        <Link
+          to="/favorites"
+          className="text-background dark:text-white hover:text-primary"
+        >
           <Heart size={24} />
         </Link>
       </div>

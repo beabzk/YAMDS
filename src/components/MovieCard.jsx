@@ -20,7 +20,7 @@ const MovieCard = ({ movie }) => {
 
   return (
     <div
-      className="movie-card relative bg-background rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105"
+      className="movie-card relative bg-background rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 dark:bg-gray-800"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -34,10 +34,10 @@ const MovieCard = ({ movie }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100" />
         </div>
         <div className="p-4">
-          <h3 className="text-lg font-semibold mb-2 line-clamp-2">
+          <h3 className="text-lg font-semibold mb-2 line-clamp-2 dark:text-white">
             {movie.title}
           </h3>
-          <div className="flex items-center justify-between text-sm text-gray-600">
+          <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
             <div className="flex items-center">
               <Calendar size={16} className="mr-1" />
               <span>{new Date(movie.release_date).getFullYear()}</span>
