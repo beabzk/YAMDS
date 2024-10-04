@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useStore from "../stores/store";
-import { Heart, Star, Calendar } from "lucide-react";
+import { Heart, Star, Calendar, Image } from "lucide-react";
 
 const MovieCard = ({ movie }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -26,11 +26,17 @@ const MovieCard = ({ movie }) => {
     >
       <Link to={`/movie/${movie.id}`} className="block h-full">
         <div className="relative aspect-w-2 aspect-h-3">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt={movie.title}
-            className="w-full h-full object-cover"
-          />
+          {movie.poster_path ? (
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700">
+              <Image size={28} />
+            </div>
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100" />
         </div>
         <div className="p-4">

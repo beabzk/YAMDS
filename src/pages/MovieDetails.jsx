@@ -6,7 +6,7 @@ import {
   getMovieVideos,
 } from "../services/api";
 import useStore from "../stores/store";
-import { Heart, Star, Calendar, Clock, Film } from "lucide-react";
+import { Heart, Star, Calendar, Clock, Film, Image } from "lucide-react";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const MovieDetails = () => {
@@ -87,11 +87,17 @@ const MovieDetails = () => {
 
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/3">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt={movie.title}
-            className="w-full rounded-lg shadow-lg"
-          />
+          {movie.poster_path ? (
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+              className="w-full rounded-lg shadow-lg"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700">
+              <Image size={28} />
+            </div>
+          )}
         </div>
 
         <div className="md:w-2/3 md:pl-8 mt-4 md:mt-0">
@@ -142,11 +148,17 @@ const MovieDetails = () => {
               <div className="flex flex-wrap gap-4">
                 {credits.cast.slice(0, 5).map((actor) => (
                   <div key={actor.id} className="text-center">
-                    <img
-                      src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-                      alt={actor.name}
-                      className="w-20 h-20 object-cover rounded-full mx-auto mb-2"
-                    />
+                    {actor.profile_path ? (
+                      <img
+                        src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                        alt={actor.name}
+                        className="w-20 h-20 object-cover rounded-full mx-auto mb-2"
+                      />
+                    ) : (
+                      <div className="w-20 h-20 flex items-center justify-center bg-gray-200 dark:bg-gray-700 rounded-full mx-auto mb-2">
+                        <Image size={28} />
+                      </div>
+                    )}
                     <p className="font-semibold">{actor.name}</p>
                     <p className="text-sm text-gray-500">{actor.character}</p>
                   </div>
