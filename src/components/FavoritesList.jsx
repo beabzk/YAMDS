@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useStore from "../stores/store";
 import MovieCard from "./MovieCard";
 
 const FavoritesList = () => {
   const { favorites } = useStore();
+  const { clearSearch } = useStore();
+
+  useEffect(() => {
+    clearSearch();
+  }, []);
 
   return (
     <div className="container mx-auto px-4">

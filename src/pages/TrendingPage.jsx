@@ -4,6 +4,7 @@ import { getTrendingMovies } from "../services/api";
 import MovieList from "../components/MovieList";
 import Pagination from "../components/Pagination";
 import LoadingSpinner from "../components/LoadingSpinner";
+import useStore from "../stores/store";
 
 const TrendingPage = () => {
   // Extract the page number from the URL parameters
@@ -14,6 +15,7 @@ const TrendingPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { clearSearch } = useStore();
 
   // Effect to fetch trending movies whenever the URL page parameter changes
   useEffect(() => {
@@ -21,6 +23,10 @@ const TrendingPage = () => {
     setCurrentPage(pageNumber);
     fetchTrendingMovies(pageNumber);
   }, [urlPage]);
+
+  useEffect(() => {
+    clearSearch();
+  }, []);
 
   // Function to fetch trending movies from the API
   const fetchTrendingMovies = async (page = 1) => {
